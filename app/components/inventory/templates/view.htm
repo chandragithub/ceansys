@@ -1,0 +1,71 @@
+<div class="container inventory-section">
+    <div ui-grid="inventoryData" ui-grid-selection ui-grid-exporter ui-grid-importer ui-grid-pagination class="grid"></div>
+    <div class="form profile-form ">
+        <form method="post" class="settings">
+          <div class="col-md-12 col-lg-12">
+              <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile"> item_id :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="item_id" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile"> order_id :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="lastName" class="form-control-static user-setting" ng-model="order_id" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile"> group_id :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="lastName" class="form-control-static user-setting" ng-model="group_id" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile" > time_stamp :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="time_stamp" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile" > privilege :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="privilege" required />
+                            </div>
+                        </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6">
+                      <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile" > current_quantity :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="current_quantity" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile" > description :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="description" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile" > last_update :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="last_update" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="control-label col-sm-4 label-user-profile" > vendor_id :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control-static user-setting" ng-model="vendor_id" required />
+                            </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="col-md-12 col-lg-12 action-inventory-btn"> 
+                  <button class="btn btn-primary setting-save-btn" ng-click="submitInventory()"> Submit </button>
+                  <button type="reset" class="btn btn-primary setting-save-btn" ng-click="cancel()"> Clear </button>
+            </div>
+        </form>
+  </div>
+</div>

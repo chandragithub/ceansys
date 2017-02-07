@@ -1,0 +1,73 @@
+    
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-primary active"> Profile </button>
+  <button type="button" class="btn btn-secondary"> Communication </button>
+  <button type="button" class="btn btn-secondary"> Accounts </button>
+</div>
+
+<div class="container setting-profile">
+   <div class="col-md-3"> 
+      <img src="{{profilePicURL}}" width="100px" height="100px">
+   </div>
+
+    <div class="form-container">
+      <div class="form profile-form ">
+        <form method="post" class="settings">
+            <div class="col-md-12 col-lg-12">
+              <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-4 label-user-profile">First Name :</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="firstName" class="form-control-static user-setting disable-color" disabled ng-model="vm.user.firstName" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-4 label-user-profile"> Last Name :</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="lastName" class="form-control-static user-setting disable-color" disabled ng-model="vm.user.lastName" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-4 label-user-profile"> Email Address :</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="lastName" class="form-control-static user-setting disable-color" disabled ng-model="vm.user.email" required />
+                        </div>
+                    </div>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-4 label-user-profile" >Phone Number :</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="firstName" class="form-control-static user-setting disable-color" disabled ng-model="vm.user.phonenumber" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-4 label-user-profile"> Position :</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="lastName" class="form-control-static user-setting disable-color" disabled ng-model="vm.user.position" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="control-label col-sm-4 label-user-profile"> Profile Picture :</label>
+                        <div class="col-sm-8">
+                            <button class="btn btn-lg upload-btn" type="button" disabled>Upload File</button>
+                        </div>
+                    </div>
+                    
+              </div>
+        </div>
+            <div class="col-md-12 col-lg-12"> 
+                  <button class="btn btn-primary setting-save-btn" ng-click="userupdate()" ng-if="update"> edit </button>
+                  <button class="btn btn-primary setting-save-btn" ng-click="saveUser()" ng-if="save"> save </button>
+                  <button class="btn btn-primary setting-save-btn" ng-click="cancel()" ng-if="save"> cancel </button>
+            </div>
+        </div>
+        </form>
+        </div>
+
+          <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+    </div>
+</div>
+
+<script type="text/javascript" src="assets/js/upload.js"> </script>
+
