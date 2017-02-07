@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+<div class="form-container login-main">
+    <div class="form main-form">
+        <% if(locals.error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+        <% if(locals.success) { %>
+            <div class="alert alert-success"><%= success %></div>
+        <% } %>
+        <form method="post">
+            <input name="username" id="username" placeholder="Username" value="<%= locals.username || '' %>" class="form-control-static"/>
+            <input type="password" name="password" placeholder="Password" id="password" class="form-control-static"/>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="message">Not registered? <a href="/register"> Create an account </a></p>
+            <!--<p class="message">Forget Password <a href="/register"> </a></p>-->
+        </form>
+    </div>
+</div>
+<%- include('partials/footer') %>
