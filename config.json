@@ -1,6 +1,6 @@
 {
-    "connectionString": "mongodb://192.30.253.113:27017/ArtiasysDB",
-    "apiUrl": "http://192.30.253.113:2000/api",
+    "connectionString": "mongodb://localhost:27017/CentokuDB",
+    "apiUrl": "http://localhost:3000/api",
     "secret": "This is save centoku Secret String"
 }
  

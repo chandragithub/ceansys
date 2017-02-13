@@ -34,5 +34,21 @@ module.exports = function(app) {
         });
     });
 
+    app.delete('/api/order/delete/:data', function (req, res) {
+        var orderData = JSON.parse(req.params.data);
+        console.log('order data is ', orderData)
+        inventoryService.deleteOrder(orderData).then(function(response) {
+            res.send('data removed successfully');
+        });
+    });
+
+    app.put('/api/order/update/:data', function (req, res) {
+        var orderData = JSON.parse(req.params.data);
+        console.log('order data is ', orderData)
+        inventoryService.updateOrder(orderData).then(function(response) {
+            res.send('data removed successfully');
+        });
+    });
+
 
 }

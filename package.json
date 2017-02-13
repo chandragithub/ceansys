@@ -6,12 +6,16 @@
     "type": "git"
   },
   "dependencies": {
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-ui-grid": "^4.0.2",
     "bcryptjs": "^2.1.0",
     "body-parser": "^1.13.2",
+    "bootstrap-material-design": "^0.5.10",
     "ejs": "^2.3.3",
     "express": "^4.13.0",
     "express-jwt": "^3.0.1",
     "express-session": "^1.11.3",
+    "font-awesome": "^4.7.0",
     "formidable": "^1.1.1",
     "jsonwebtoken": "^5.0.2",
     "lodash": "^3.10.0",

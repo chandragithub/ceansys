@@ -5,11 +5,23 @@
     <% } %>
     <div class="form main-form">
         <form method="post" class="login-form">
-            <input type="text" name="firstName" id="firstName" class="form-control-static" placeholder="Firstname" value="<%= locals.firstName || '' %>" required />
-            <input type="text" name="lastName" id="lastName" class="form-control-static" placeholder="Lastname" value="<%= locals.lastName || '' %>" required />
-            <input type="text" name="username" id="username" class="form-control-static" placeholder="Username" value="<%= locals.username || '' %>" required />
-            <input type="password" name="password" id="password" class="form-control-static" placeholder="Password" required />
-            <button type="submit" class="">Register</button>
+            <div class="form-group label-floating">
+                <label for="i5" class="control-label">Name</label>
+                <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
+            </div>
+            <div class="form-group label-floating">
+                <label for="i5" class="control-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control"  value="<%= locals.username || '' %>" required />
+            </div>
+            <div class="form-group label-floating">
+                <label for="i5" class="control-label">Email</label>
+                <input type="email" name="lastName" id="lastName" class="form-control" value="<%= locals.lastName || '' %>" required />
+            </div>
+            <div class="form-group label-floating">
+                <label for="i5" class="control-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
             <p class="message"> Please Login <a href="/login"> here </a> </p>
         </form>
     </div>

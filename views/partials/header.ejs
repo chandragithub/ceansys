@@ -5,16 +5,26 @@
     <title> Centoku Inc </title>
     <link rel="icon" href="/assets/img/favicon.ico">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/centoku.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-material-design/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="/assets/css/centoku-server.css">
+    <link rel="stylesheet" href="/assets/css/centoku-override.css">
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/node_modules/bootstrap-material-design/dist/js/material.min.js"> </script>
+    <script type="text/javascript" src="/node_modules/bootstrap-material-design/dist/js/ripples.min.js"> </script>
+    <script>
+        $.material.init();
+    </script>
 </head>
 <body>
     
     <header>
         <!-- NAVIGATION BEGIN -->
-        <nav class="navbar navbar-fixed-top navbar-slide">
+        <nav class="">
           <div class="container_fluid header">
                 <div class="col-md-5">
-                    <a class="navbar-brand goto" href=""> A R T I A S Y S </a>
+                    <a class="navbar-brand goto" href=""> <img src="/assets/img/logo_nav.png" alt="Centoku Logo" /> </a>
                 </div>
                 <div class="col-md-7">
                         <p class="pull-right register"> <a href="/register"> Register </a></p>

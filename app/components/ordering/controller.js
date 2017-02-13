@@ -3,25 +3,25 @@
 
     angular.module('centoku').controller('ordering', Controller);
 
-    function Controller($scope, $timeout, $interval, $q, UserService, uiGridConstants, OrderService, FlashService ) {
+    function Controller($scope, $timeout, $interval, $q, $log, UserService, uiGridConstants, OrderService, FlashService ) {
         var vm = this;
 
         vm.user = null;
         
         $scope.addinventorytab = true;
+        $scope.create = true;
         initController();
 
         function initController() {
             // get current user
             UserService.GetCurrent().then(function (user) {
                 vm.user = user;
-                console.log(vm.user.username);
                 getOrder(vm.user.username);
             });
 
         };
         
-        $scope.submitOrder = function() {
+        vm.submitOrder = function() {
             var inventoryVal = {
                 "username": vm.user.username,
                 "order_id": $scope.order_id,
@@ -40,6 +40,53 @@
                 $scope.delivery_date = '';
 
                 FlashService.Success('User updated');
+                getOrder(vm.user.username);
+            }).catch(function (error) {
+                    FlashService.Error(error);
+                });
+        };
+        
+        vm.updateOrder = function() {
+            var orderVal = {
+                "username": vm.user.username,
+                "order_id": $scope.order_id,
+                "order_name": $scope.order_name,
+                "vendor_id": $scope.vendor_id,
+                "order_date": $scope.order_date,
+                "delivery_date": $scope.delivery_date
+            };
+            
+            OrderService.UpdateOrder(orderVal).then(function (data) {
+               console.log('updated successfully');
+                $scope.order_id = '';
+                $scope.order_name = '';
+                $scope.vendor_id = '';
+                $scope.order_date = '';
+                $scope.delivery_date = '';
+
+                FlashService.Success('User updated');
+                getOrder(vm.user.username);
+            }).catch(function (error) {
+                    FlashService.Error(error);
+                });
+        };
+
+        vm.deleteOrder = function() {
+            var deleteOrderVal = {
+                "username": vm.user.username,
+                "order_id": $scope.order_id
+            };
+            
+            OrderService.DeleteOrder(deleteOrderVal).then(function (data) {
+               console.log('updated successfully');
+                $scope.order_id = '';
+                $scope.order_name = '';
+                $scope.vendor_id = '';
+                $scope.order_date = '';
+                $scope.delivery_date = '';
+
+                FlashService.Success('User updated');
+                $interval( function() {$scope.gridApi.selection.selectRow($scope.orderData.data[0]);}, 0, 1);
                 getOrder(vm.user.username);
             }).catch(function (error) {
                     FlashService.Error(error);
@@ -76,15 +123,29 @@
                 });  
         };
 
+        vm.createNewOrder = function() {
+            $scope.order_id = '';
+            $scope.order_name = '';
+            $scope.vendor_id = '';
+            $scope.order_date = '';
+            $scope.delivery_date = '';
+            $scope.toggleRowSelection();
+            $scope.create = true;
+            $scope.update = false;
+            $scope.createNew = false;
+            $scope.deleteOrder = false;
+        };
 
         $scope.orderData = {
-        			enableRowSelection: true,
-        			enableRowHeaderSelection: false,
-        			enableSorting: true,
+        			      enableRowSelection: true,
+        			      enableRowHeaderSelection: false,
+        			      enableSorting: true,
+                    enableColumnMenus: false,
                     enableFiltering: true,
                     enableGridMenu: true,
+                    rowHeight: 35,
                     enablePaginationControls: true,
-                    paginationPageSize: 10,
+                    paginationPageSize: 5,
                     exporterCsvFilename: 'order.csv',
                     exporterPdfDefaultStyle: {fontSize: 12},
                     exporterPdfTableStyle: {margin: [0, 30, 0, 0]},
@@ -107,42 +168,58 @@
                     },
                     onRegisterApi: function(gridApi){
                       $scope.gridApi = gridApi;
-                    },
+                      gridApi.selection.on.rowSelectionChanged($scope, function(row){
+                            var msg = 'row selected ' + row.entity.order_name;
+                            $scope.order_id = row.entity.order_id;
+                            $scope.order_name = row.entity.order_name;
+                            $scope.vendor_id = row.entity.vendor_id;
+                            $scope.order_date = row.entity.order_date;
+                            $scope.delivery_date = row.entity.delivery_date;
+
+                            $scope.create = false;
+                            $scope.update = true;
+                            $scope.createNew = true;
+                            $scope.deleteOrder = true;
+                            $log.log(msg);
+                        });
+                   
+                        gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
+                          var msg = 'rows changed ' + rows.length;
+                          $log.log(msg);
+                        });
+
+                        $scope.toggleRowSelection = function() {
+                          $scope.gridApi.selection.clearSelectedRows();
+                        };
+                     },
                     columnDefs: [
-                      { name: 'order_id',
+                      { 
+                        name: 'order_id',
                       	desplayName: 'Order ID',
-                      	width: '150',
                       	visible: true,
                       	enableCellEdit: false },
-                      { name: 'order_name',
+                      { 
+                        name: 'order_name',
                       	desplayName: 'Order Name',
-                      	width: '150',
                       	enableCellEdit: false,
                       	enableSorting: false  },
-                      { name: 'vendor_id',
-                      	desplayName: 'Vendor ID',
-                      	width: '150'},
+                      { 
+                        name: 'vendor_id',
+                      	desplayName: 'Vendor ID'
+                      },
                       { name: 'order_date',
-                      	desplayName: 'Order Date',
-                      	width: '150' },
-                      { name: 'delivery_date',
+                      	desplayName: 'Order Date'
+                      },
+                      { 
+                        name: 'delivery_date',
                       	desplayName: 'Delivery Date',
-                      	width: '150',
-                      	type: 'boolean' }
+                      	type: 'boolean'
+                      }
                     ]
                };
 
                $scope.orderData.multiSelect = false;
-			   $scope.orderData.modifierKeysToMultiSelect = false;
-			   $scope.orderData.noUnselect = true;
-
-
-			  $scope.toggleRowSelection = function() {
-			    $scope.gridApi.selection.clearSelectedRows();
-			    $scope.gridOptions.enableRowSelection = !$scope.gridOptions.enableRowSelection;
-			    $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.OPTIONS);
-			  };
-    
+			         $scope.orderData.modifierKeysToMultiSelect = false;
+			         $scope.orderData.noUnselect = true;
     };       
-
 })();
