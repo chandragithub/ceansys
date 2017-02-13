@@ -3,7 +3,7 @@
 
     angular.module('centoku').controller('inventory', Controller);
 
-    function Controller($scope, $timeout, $interval, UserService, InventoryService, FlashService ) {
+    function Controller($scope, $timeout, $log, $interval, UserService, InventoryService, FlashService ) {
         var vm = this;
 
         vm.user = null;
@@ -48,6 +48,7 @@
                 $scope.vendor_id = '';
 
                FlashService.Success('User updated');
+               $interval( function() {$scope.gridApi.selection.selectRow($scope.data[0]);}, 0, 1);
                getInventory(vm.user.username);
             }).catch(function (error) {
                     FlashService.Error(error);
@@ -83,17 +84,21 @@
         };
         
         $scope.inventoryData = {
+                    multiSelect: false,
+                    enableRowSelection: true,
+                    enableRowHeaderSelection: false,
+                    enableSorting: true,
+                    enableColumnMenus: false,
                     enableFiltering: true,
                     enableGridMenu: true,
-                    enableSelectAll: true,
+                    rowHeight: 35,
                     enablePaginationControls: true,
-                    paginationPageSize: 10,
-                    rowTemplate: rowTemplate(),
-                    exporterCsvFilename: 'myFile.csv',
-                    exporterPdfDefaultStyle: {fontSize: 9},
-                    exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+                    paginationPageSize: 5,
+                    exporterCsvFilename: 'order.csv',
+                    exporterPdfDefaultStyle: {fontSize: 12},
+                    exporterPdfTableStyle: {margin: [0, 30, 0, 0]},
                     exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
-                    exporterPdfHeader: { text: "My Header", style: 'headerStyle' },
+                    exporterPdfHeader: { text: "Order Report", style: 'headerStyle' },
                     exporterPdfFooter: function ( currentPage, pageCount ) {
                       return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
                     },
@@ -102,16 +107,43 @@
                       docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
                       return docDefinition;
                     },
-                    exporterPdfOrientation: 'portrait',
-                    exporterPdfPageSize: 'LETTER',
-                    exporterPdfMaxGridWidth: 500,
+                    exporterPdfOrientation: 'landscape',
+                    exporterPdfPageSize: 'letter',
+                    exporterPdfMaxGridWidth: 1000,
                     exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
                     importerDataAddCallback: function ( grid, newObjects ) {
                       $scope.data = $scope.data.concat( newObjects );
                     },
                     onRegisterApi: function(gridApi){
                       $scope.gridApi = gridApi;
-                    },
+                      gridApi.selection.on.rowSelectionChanged($scope, function(row){
+                            var msg = 'row selected ' + row.entity.order_name;
+                            $scope.item_id = row.entity.item_id;
+                            $scope.order_id = row.entity.order_id;
+                            $scope.group_id = row.entity.group_id;
+                            $scope.time_stamp = row.entity.time_stamp;
+                            $scope.privilege = row.entity.privilege;
+                            $scope.current_quantity = row.entity.current_quantity;
+                            $scope.description = row.entity.description;
+                            $scope.last_update = row.entity.last_update;
+                            $scope.vendor_id = row.entity.vendor_id;
+
+                            $scope.create = false;
+                            $scope.update = true;
+                            $scope.createNew = true;
+                            $scope.deleteOrder = true;
+                            $log.log(msg);
+                        });
+                   
+                        gridApi.selection.on.rowSelectionChangedBatch($scope,function(rows){
+                          var msg = 'rows changed ' + rows.length;
+                          $log.log(msg);
+                        });
+
+                        $scope.toggleRowSelection = function() {
+                          $scope.gridApi.selection.clearSelectedRows();
+                        };
+                     },
                     data: 'data',
                     columnDefs: [
                       { name: 'item_id' },
@@ -125,6 +157,7 @@
                       { name: 'vendor_id'}
                     ]
                };
+
     };       
 
 })();

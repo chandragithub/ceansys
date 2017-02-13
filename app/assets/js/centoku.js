@@ -24,11 +24,11 @@ $(document).ready(function(){
         
     });
 
-    $(window).resize(function () {
+    /*$(window).resize(function () {
         console.log($(window).width());
         var winWidth = $(window).width() - 250;
         $('.grid').css('width', winWidth);
-    });
+    });*/
 
     
 });

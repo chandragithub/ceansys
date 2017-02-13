@@ -1,0 +1,20 @@
+.form-group {
+	padding-bottom: 0 !important;
+}
+
+.ui-grid {
+	border: 0;
+}
+
+.grid {
+	padding: 10px;
+    margin-bottom: 20px;
+}
+
+.ui-grid-top-panel {
+	background: #fff;
+}
+
+.ui-grid-viewport{
+    overflow: auto;
+}

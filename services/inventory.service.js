@@ -14,6 +14,9 @@ service.create = create;
 service.get = get;
 service.createOrder = createOrder;
 service.getOrder = getOrder;
+service.updateOrder = updateOrder;
+service.deleteOrder = deleteOrder;
+
 module.exports = service;
 
 function create(inventoryData) {
@@ -63,3 +66,31 @@ function getOrder(un) {
     });
     return deferred.promise;
 }
+
+function updateOrder(un) {
+    var deferred = Q.defer();
+    db.order.find({username: un}).toArray(function (err, data) {
+         if (err) deferred.reject(err.name + ': ' + err.message);
+         deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+
+function deleteOrder(data) {
+    var deferred = Q.defer();
+    db.order.remove({username: data.username, order_id: data.order_id}, function (err, data) {
+         if (err) deferred.reject(err.name + ': ' + err.message);
+         deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+
+function updateOrder(data) {
+    var deferred = Q.defer();
+    db.order.update({username: data.username, order_id: data.order_id}, data,  function (err, data) {
+         if (err) deferred.reject(err.name + ': ' + err.message);
+         deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+

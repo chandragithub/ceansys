@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <base href="/" />
-    <title> CEANSys - Computing Engine and Networking systems </title>
+    <meta charset="utf-8">
+    <title> Centoku Inc. </title>
     <link rel="icon" href="assets/img/favicon.ico">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap-material-design/dist/css/ripples.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css"> 
-    <link rel="stylesheet" href="assets/css/artasys.css"/>
-    <link>  
-        [ng-clock] {
-            display: none;
-        }
-    </link>
+    <link  rel="stylesheet" type="text/css" href="assets/css/centoku.css">
+    <link  rel="stylesheet" type="text/css" href="assets/css/centoku-override.css">
+    
 </head>
-<body ng-clock>
-    <header  class="container" >
+<body>
+    <header  class="container">
         <nav class="navbar navbar-fixed-top navbar-slide">
             <div class="container_fluid header">
                 <div class="col-md-5">
-                    <a class="navbar-brand goto" href=""> CEANSys </a>
+                    <a class="navbar-brand goto" href=""> <img src="/assets/img/logo_nav.png" alt="Centoku Logo"> </a>
                 </div>
                 <div class="col-md-7">
                         <div id="nav-icon1" class="pull-right hamburger-icon" title="menu">
@@ -38,18 +36,18 @@
         <ul class="side-menu">
             <div class="username-container">
                 <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
-                <img ng-src="{{profilePicURL}}" width="75px" height="75px" style="border-radius: 50%" alt="user profile picture" />
-                <p>Welcome {{user.username}} </p>
+                <img ng-src="{{profilePicURL}}" width="75px" height="75px" style="border-radius: 50%" alt="user profile picture">
+                <p> {{user.username}} </p>
             </div>
             <a ui-sref="home" class="nav-tab"> <li ng-class="{active: activeTab === 'home'}" class="fa fa-home side-nav "> <p class="tab-name">  Home</p></li></a>
             <a ui-sref="inventory" class="nav-tab"><li ng-class="{active: activeTab === 'inventory'}" class="fa fa-clipboard side-nav"><p class="tab-name">  Inventory</p></li> </a>
             <a ui-sref="ordering" class="nav-tab"><li ng-class="{active: activeTab === 'ordering'}" class="fa fa-file-text-o  side-nav"><p class="tab-name">  Ordering </p></li> </a>
             <a ui-sref="dashboard" class="nav-tab"><li ng-class="{active: activeTab === 'board'}" class="fa fa-tachometer side-nav">  <p class="tab-name"> Board </p></li> </a>
             <a ui-sref="setting" class="nav-tab"><li ng-class="{active: activeTab === 'setting'}" class="fa fa-cog side-nav"> <p class="tab-name">  Setting </p></li></a>
-            <a ng-href="/login" class="nav-tab"><li ng-class="{active: activeTab === 'logout'}" class="fa fa-sign-out side-nav"> <p class="tab-name">  Logout </p></li> </a>
+            <a href="/login" class="nav-tab"><li ng-class="{active: activeTab === 'logout'}" class="fa fa-sign-out side-nav"> <p class="tab-name">  Logout </p></li> </a>
             
             <div class="copyright">
-                <p> <i class="fa fa-copyright" aria-hidden="true"></i> 2017 CEANSys India Private Limited </p>
+                <p> <i class="fa fa-copyright" aria-hidden="true"></i> 2017 Centoku, Inc. </p>
                 <p> All rigts reserved. </p>
             </div>
         </ul>
@@ -60,42 +58,38 @@
         <p> Loading... </p>
     </main>
 
-    <!-- footer -->
-    <!--<footer class="footer-main">
-        <div class="container">
-            <p class="text-muted text-center">&copy; 2017 Centoku, Inc. All rigts reserved.</p>
-        </div>
-    </footer>-->
-
     <!-- external scripts -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.10/angular.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script> 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script> 
-    <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script> 
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.10/angular.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script> 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script> 
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script> 
+    <script type="text/javascript" src="/node_modules/bootstrap-material-design/dist/js/material.min.js"> </script>
+    <script type="text/javascript" src="/node_modules/bootstrap-material-design/dist/js/ripples.min.js"> </script>
     
     <script type="text/javascript" src="assets/js/centoku.js"> </script>
-
     <!-- application scripts -->
-    <script src="application/app.js"></script>
-    <script src="application/services/user.service.js"></script>
-    <script src="application/services/inventory.service.js"></script>
-    <script src="application/services/flash.service.js"></script>
-    <script src="application/services/order.service.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="services/user.service.js"></script>
+    <script type="text/javascript" src="services/inventory.service.js"></script>
+    <script type="text/javascript" src="services/flash.service.js"></script>
+    <script type="text/javascript" src="services/order.service.js"></script>
 
 
-    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script type="text/javascript" src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script type="text/javascript" src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script type="text/javascript" src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
     
-    <script src="application/components/home/controller.js"></script>
-    <script src="application/components/setting/controller.js"></script>
-    <script src="application/components/ordering/controller.js"></script>
+    <script type="text/javascript" src="components/home/controller.js"></script>
+    <script type="text/javascript" src="components/setting/controller.js"></script>
+    <script type="text/javascript" src="components/ordering/controller.js"></script>
     
-    <script src="application/components/inventory/controller.js"></script>
+    <script type="text/javascript" src="components/inventory/controller.js"></script>
     
-
+    <script>
+        $.material.init();
+    </script>
 
 
 </body>

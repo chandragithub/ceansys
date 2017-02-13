@@ -10,6 +10,8 @@
 
         service.CreateOrder = CreateOrder;
         service.GetOrder = GetOrder;
+        service.DeleteOrder = DeleteOrder;
+        service.UpdateOrder = UpdateOrder;
         return service;
 
         function CreateOrder(data) {
@@ -18,6 +20,14 @@
         
         function GetOrder(data) {
             return $http.get('/api/order/get/'+ data).then(handleSuccess, handleError);
+        }
+
+        function DeleteOrder(data) {
+            return $http.delete('/api/order/delete/'+ JSON.stringify(data)).then(handleSuccess, handleError);
+        }
+
+        function UpdateOrder(data) {
+            return $http.put('/api/order/update/'+ JSON.stringify(data)).then(handleSuccess, handleError);
         }
         
         function handleSuccess(res) {
